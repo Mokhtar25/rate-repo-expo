@@ -1,6 +1,7 @@
 import Constants from "expo-constants";
 import { Text, StyleSheet, View } from "react-native";
 import RepositoryList from "./comp/RepositoryList";
+import AppBar from "./comp/AppBar";
 
 const styles = StyleSheet.create({
   container: {
@@ -12,9 +13,12 @@ const styles = StyleSheet.create({
 
 const Main = () => {
   return (
-    <View style={styles.container} className="bg-blue-400">
-      <RepositoryList />
-    </View>
+    <>
+      <AppBar />
+      <View style={styles.container} className="bg-blue-400">
+        <RepositoryList />
+      </View>
+    </>
   );
 };
 
