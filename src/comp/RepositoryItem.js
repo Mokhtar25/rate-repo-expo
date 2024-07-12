@@ -1,6 +1,9 @@
 import { View, StyleSheet, Text, Image } from "react-native";
 
 const styles = StyleSheet.create({
+  boxText: {
+    borderRadius: 99999,
+  },
   container: {
     paddingTop: 50,
   },
@@ -26,24 +29,23 @@ function RepositoryItem({
   ownerAvatarUrl,
 }) {
   return (
-    <View className="flex flex-col gap-2 text-xl border-black border-2 p-2">
+    <View className="flex flex-col gap-2 text-xl bg-white border-black border-2 p-2">
       <View className="flex flex-row gap-2">
         <Image src={ownerAvatarUrl} style={styles.logo} className="rounded" />
         <View className="flex flex-col px-2">
           <Text className="text-lg font-medium">{fullName} </Text>
-          <Text className="text-xs text-slate-700">{description}</Text>
-          <Text
-            className="bg-sky-700 self-start p-2 rounded-lg text-white py-2 flex justify-center items-center
-      "
-          >
-            {language}
-          </Text>
+          <Text className="text-xs text-slate-700 ">{description}</Text>
+          <View className="rounded-md bg-sky-700 p-[7] my-2 self-start">
+            <Text className="text-white">{language}</Text>
+          </View>
         </View>
       </View>
-      <Numbers data={forksCount} />
-      <Text>{stargazersCount} </Text>
-      <Text>{ratingAverage} </Text>
-      <Text>{reviewCount} </Text>
+      <View className="flex flex-row justify-evenly items-center gap-4">
+        <Numbers data={stargazersCount} label="Stars" />
+        <Numbers data={forksCount} label={"Fork"} />
+        <Numbers data={reviewCount} label={"Reviews"} />
+        <Numbers data={ratingAverage} label={"Rating"} />
+      </View>
     </View>
   );
 }
@@ -55,11 +57,12 @@ function formatNumber(num) {
   return num.toString();
 }
 
-const Numbers = ({ data }) => {
+const Numbers = ({ data, label }) => {
   const num = formatNumber(+data);
   return (
-    <View className="p-2">
-      <Text>{num}</Text>
+    <View className="p-2 flex flex-col justify-center items-center">
+      <Text className="font-bold">{num}</Text>
+      <Text className="text-slate-700">{label}</Text>
     </View>
   );
 };
