@@ -3,17 +3,17 @@ import Constants from "expo-constants";
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: Constants.statusBarHeight,
-  },
-  text: {
-    fontSize: 20,
+    height: Constants.statusBarHeight,
   },
 });
 
 const AppBar = () => {
   return (
-    <View style={styles.container} className="px-4">
-      <Text className="text-2xl mx-auto  ">Repos</Text>
+    <View
+      style={styles.container}
+      className="bg-white border-b-2 border-b-slate-200 flex justify-center items-center"
+    >
+      <Text className=" mx-auto  text-3xl  ">Repos</Text>
     </View>
   );
 };

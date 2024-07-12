@@ -29,7 +29,7 @@ function RepositoryItem({
   ownerAvatarUrl,
 }) {
   return (
-    <View className="flex flex-col gap-2 text-xl bg-white border-black border-2 p-2">
+    <View className="flex flex-col gap-2 text-xl bg-white border-black border-y-2 p-2">
       <View className="flex flex-row gap-2">
         <Image src={ownerAvatarUrl} style={styles.logo} className="rounded" />
         <View className="flex flex-col px-2">

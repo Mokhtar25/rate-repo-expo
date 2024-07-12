@@ -13,12 +13,10 @@ const styles = StyleSheet.create({
 
 const Main = () => {
   return (
-    <>
+    <View style={styles.container} className="bg-blue-400 ">
       <AppBar />
-      <View style={styles.container} className="bg-blue-400">
-        <RepositoryList />
-      </View>
-    </>
+      <RepositoryList />
+    </View>
   );
 };
 
