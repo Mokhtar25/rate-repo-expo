@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
 
 const Main = () => {
   return (
-    <View style={styles.container} className="bg-blue-400 ">
+    <View style={styles.container} className="bg-neutral-100 ">
       <AppBar />
       <Routes>
         <Route path="/" element={<RepositoryList />} />
