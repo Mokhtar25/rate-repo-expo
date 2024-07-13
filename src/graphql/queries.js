@@ -5,11 +5,16 @@ export const GET_REPOSITORIES = gql`
     repositories {
       edges {
         node {
+          id
           fullName
           ownerAvatarUrl
           ownerName
           openIssuesCount
+          description
           language
+          reviewCount
+          ratingAverage
+          forksCount
           stargazersCount
         }
       }

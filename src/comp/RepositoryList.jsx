@@ -25,11 +25,12 @@ const RepositoryList = () => {
   });
   // const { repositories } = useRepos();
 
-  console.log(data.repositories.edges[2].node.fullName, error, loading);
+  console.log(data, error, loading);
   if (loading === true || error) return null;
-  const repositoryNodes = data.repositories
+  const repositoryNodes = data
     ? data.repositories.edges.map((edge) => edge.node)
     : [];
+  console.log(data.repositories.edges[2].node);
   return (
     <FlatList
       className="bg-slate-200"
