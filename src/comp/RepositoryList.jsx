@@ -30,7 +30,11 @@ const RepositoryList = () => {
   const repositoryNodes = data
     ? data.repositories.edges.map((edge) => edge.node)
     : [];
-  console.log(data.repositories.edges[2].node);
+
+  repositoryNodes.sort((a, b) =>
+    a.stargazersCount > b.stargazersCount ? -1 : +1,
+  );
+
   return (
     <FlatList
       className="bg-slate-200"
