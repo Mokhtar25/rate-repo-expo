@@ -1,6 +1,9 @@
 import { FlatList, View, StyleSheet } from "react-native";
-import { useState, useEffect } from "react";
 import useRepos from "../hooks/UseRepos";
+
+import { useQuery } from "@apollo/client";
+
+import { GET_REPOSITORIES } from "../graphql/queries";
 
 import RepositoryItem from "./RepositoryItem";
 
@@ -12,14 +15,20 @@ const styles = StyleSheet.create({
   },
 });
 // http://100.127.3.78:5001/api/repositories
+//  exp://kof_utc-anonymous-8081.exp.direct
 
 const ItemSeparator = () => <View style={styles.separator} />;
 
 const RepositoryList = () => {
-  const { repositories } = useRepos();
+  const { data, error, loading } = useQuery(GET_REPOSITORIES, {
+    fetchPolicy: "cache-and-network",
+  });
+  // const { repositories } = useRepos();
 
-  const repositoryNodes = repositories
-    ? repositories.edges.map((edge) => edge.node)
+  console.log(data.repositories.edges[2].node.fullName, error, loading);
+  if (loading === true || error) return null;
+  const repositoryNodes = data.repositories
+    ? data.repositories.edges.map((edge) => edge.node)
     : [];
   return (
     <FlatList
