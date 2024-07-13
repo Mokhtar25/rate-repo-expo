@@ -1,4 +1,4 @@
-import { Text, Input, View, Pressable } from "react-native";
+import { Text, View, Pressable } from "react-native";
 import React from "react";
 import { TextInput } from "react-native";
 import { useFormik } from "formik";
@@ -36,38 +36,42 @@ const SignIn = () => {
   // can be done esaily with formik error checking
   // do not use controlled inputs cases flickering and unexpected behivor beacse of rerenders
   return (
-    <View className="flex flex-col gap-16 items-center  mt-0 h-full bg-slate-200">
-      <Text className="text-3xl">Sign in</Text>
-
-      {formik.touched.username && formik.errors.username && (
-        <Text className="text-red-500 absolute top-[65] mx-auto">
-          {formik.errors.username}
-        </Text>
-      )}
-
-      {formik.touched.pass && formik.errors.pass && (
-        <Text className="text-red-500 absolute top-[80] mx-auto">
-          {formik.errors.pass}
-        </Text>
-      )}
-
+    <View className="flex flex-col gap-4 pt-8 items-center  mt-0 h-full bg-slate-200">
       <View className=" flex flex-col gap-2  w-3/4 items-center ">
+        <Text className="text-3xl py-8">Sign in</Text>
+
         <TextField
           placeholder="Username"
           value={formik.values.username}
           onChangeText={formik.handleChange("username")}
+          className={
+            formik.errors.username && formik.touched.username
+              ? "border-red-500"
+              : ""
+          }
         />
 
-        <TextField placeholder="Username uncro" />
+        {formik.touched.username && formik.errors.username && (
+          <Text className="text-red-500 ">{formik.errors.username}</Text>
+        )}
         <TextField
           placeholder="Password"
           secureTextEntry={true}
+          className={
+            formik.errors.pass && formik.touched.pass ? "border-red-500" : ""
+          }
           value={formik.values.pass}
           onChangeText={formik.handleChange("pass")}
         />
+        {formik.touched.pass && formik.errors.pass && (
+          <Text className="text-red-500">{formik.errors.pass}</Text>
+        )}
       </View>
-      <Pressable onPress={formik.handleSubmit}>
-        <Text>Calculate</Text>
+      <Pressable
+        className="bg-blue-500 rounded h-12 w-28 justify-center items-center"
+        onPress={formik.handleSubmit}
+      >
+        <Text className="text-white">Calculate</Text>
       </Pressable>
     </View>
   );
@@ -77,7 +81,7 @@ const TextField = ({ ...props }) => {
   return (
     <TextInput
       {...props}
-      className="border-slate-600 bg-slate-100 w-full text-black border-2 rounded-xl p-3 "
+      className="border-slate-600 bg-slate-100 w-full p-3 text-black border-2 rounded-xl  "
     />
   );
 };

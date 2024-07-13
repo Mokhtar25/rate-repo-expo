@@ -13,6 +13,7 @@ const styles = StyleSheet.create({
   },
 });
 
+// http://100.127.3.78:5001/api/repositories
 const Main = () => {
   return (
     <View style={styles.container} className="bg-neutral-100 ">
