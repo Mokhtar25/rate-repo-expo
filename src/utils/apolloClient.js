@@ -1,9 +1,35 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
+import Constants from "expo-constants";
+import { createHttpLink } from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
 
 // http://100.127.3.78:5001/api/repositories
-const createApolloClient = () => {
+
+const URI = Constants.expoConfig.extra.APOLLO_URI;
+
+const httpLink = createHttpLink({
+  uri: URI,
+});
+
+const createApolloClient = (authStorage) => {
+  const authLink = setContext(async (_, { headers }) => {
+    try {
+      const accessToken = await authStorage.getAccessToken();
+      return {
+        headers: {
+          ...headers,
+          authorization: accessToken ? `Bearer ${accessToken}` : "",
+        },
+      };
+    } catch (e) {
+      console.log(e);
+      return {
+        headers,
+      };
+    }
+  });
   return new ApolloClient({
-    uri: "http://100.127.3.78:4000/graphql",
+    link: authLink.concat(httpLink),
     cache: new InMemoryCache(),
   });
 };
