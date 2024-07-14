@@ -1,7 +1,6 @@
-import { View, StyleSheet, Text, Touchable, Button } from "react-native";
+import { View, StyleSheet, Text, Button } from "react-native";
 import Constants from "expo-constants";
 import { Link } from "react-router-native";
-import { ScrollView } from "react-native";
 import { useQuery } from "@apollo/client";
 import { SIGN_OUT } from "../graphql/auth";
 import { useApolloClient } from "@apollo/client";
@@ -21,11 +20,6 @@ const AppBar = () => {
   const signOut = async () => {
     await AuthStorage.removeAccessToken();
     client.resetStore();
-    console.log("cliked");
-    const s = await AuthStorage.getAccessToken();
-
-    console.log(s);
-    console.log(data);
   };
   return (
     <View
