@@ -1,5 +1,6 @@
-import { View, StyleSheet, Text, Image } from "react-native";
-
+import { View, StyleSheet, Text, Image, Button } from "react-native";
+import * as Linking from "expo-linking";
+import { Link } from "react-router-native";
 const styles = StyleSheet.create({
   boxText: {
     borderRadius: 99999,
@@ -18,16 +19,21 @@ const styles = StyleSheet.create({
 });
 
 function RepositoryItem({
-  id,
   fullName,
+  id,
   description,
   language,
   forksCount,
   stargazersCount,
   ratingAverage,
   reviewCount,
+  url,
   ownerAvatarUrl,
 }) {
+  const gotoUrl = () => {
+    Linking.openURL(url);
+  };
+
   return (
     <View className="flex flex-col gap-2 text-xl bg-white border-black border-y-2 p-2">
       <View className="flex flex-row gap-2">
@@ -48,6 +54,13 @@ function RepositoryItem({
         <Numbers data={reviewCount} label={"Reviews"} />
         <Numbers data={ratingAverage} label={"Rating"} />
       </View>
+
+      <View className="bg-blue-500 rounded my-2">
+        <Button title="Visit on Github" color={"#f0f9ff"} onPress={gotoUrl} />
+      </View>
+      <Link to={`/${id}`}>
+        <Text title="more"> more </Text>
+      </Link>
     </View>
   );
 }

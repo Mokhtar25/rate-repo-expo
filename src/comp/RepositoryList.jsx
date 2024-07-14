@@ -1,7 +1,9 @@
-import { FlatList, View, StyleSheet } from "react-native";
+import { FlatList, View, StyleSheet, Text } from "react-native";
 import useRepos from "../hooks/UseRepos";
+import { useRef } from "react";
 
 import { useQuery } from "@apollo/client";
+import TEST from "./Press";
 
 import { GET_REPOSITORIES } from "../graphql/queries";
 
@@ -34,17 +36,19 @@ const RepositoryList = () => {
   repositoryNodes.sort((a, b) =>
     a.stargazersCount > b.stargazersCount ? -1 : +1,
   );
-
   return (
-    <FlatList
-      className="bg-slate-200"
-      style={styles.separator}
-      data={repositoryNodes}
-      ItemSeparatorComponent={ItemSeparator}
-      keyExtractor={(item) => item.id}
-      renderItem={(data) => <RepositoryItem {...data.item} />}
-      // other props
-    />
+    <>
+      <FlatList
+        className="bg-slate-200"
+        style={styles.separator}
+        data={repositoryNodes}
+        ItemSeparatorComponent={ItemSeparator}
+        keyExtractor={(item) => item.id}
+        renderItem={(data) => <RepositoryItem {...data.item} />}
+        // other props
+      />
+      <TEST />
+    </>
   );
 };
 

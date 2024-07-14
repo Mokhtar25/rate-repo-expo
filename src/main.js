@@ -4,6 +4,8 @@ import RepositoryList from "./comp/RepositoryList";
 import AppBar from "./comp/AppBar";
 import { Route, Routes, Navigate } from "react-router-native";
 import SignIn from "./comp/SignIn";
+import RepositoryItem from "./comp/RepositoryItem";
+import RepositoryItemPage from "./comp/RepositoryItemPage";
 
 const styles = StyleSheet.create({
   container: {
@@ -27,6 +29,7 @@ const Main = () => {
       <Routes>
         <Route path="/" element={<RepositoryList />} />
         <Route path="/signin" element={<SignIn />} />
+        <Route path=":id" element={<RepositoryItemPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </View>

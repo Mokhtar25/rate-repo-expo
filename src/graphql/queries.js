@@ -10,6 +10,7 @@ export const GET_REPOSITORIES = gql`
           ownerAvatarUrl
           ownerName
           openIssuesCount
+          url
           description
           language
           reviewCount
@@ -18,6 +19,23 @@ export const GET_REPOSITORIES = gql`
           stargazersCount
         }
       }
+    }
+  }
+`;
+
+export const GET_REPO = gql`
+  query ($id: ID!) {
+    repository(id: $id) {
+      fullName
+      id
+      description
+      language
+      forksCount
+      stargazersCount
+      ratingAverage
+      reviewCount
+      url
+      ownerAvatarUrl
     }
   }
 `;

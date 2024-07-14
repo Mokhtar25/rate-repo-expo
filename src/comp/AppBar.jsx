@@ -29,14 +29,14 @@ const AppBar = () => {
       <Link to={"/"} className="">
         <Text className=" mx-auto  text-3xl  active:bg-red-400 ">Repos</Text>
       </Link>
-      {!data.me && (
+      {(!data || !data.me) && (
         <Link to={"/signin"}>
           <Text className=" mx-auto  text-3xl  active:bg-red-400 ">
             Sign In
           </Text>
         </Link>
       )}
-      {data.me && <Button title="sing out" onPress={signOut} />}
+      {data && data.me && <Button title="sing out" onPress={signOut} />}
     </View>
   );
 };
