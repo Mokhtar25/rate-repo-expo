@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { TextInput } from "react-native";
 import { useFormik } from "formik";
 import * as yup from "yup";
-
+import AuthStorage from "../utils/authStorage";
 import { SIGN_IN } from "../graphql/auth";
 import { useMutation } from "@apollo/client";
 
@@ -33,8 +33,19 @@ const SignIn = () => {
   useEffect(() => {
     if (result.data) {
       console.log(result.data.authenticate.accessToken);
+      AuthStorage.setAccessToken(result.data.authenticate.accessToken);
     }
   }, [result]);
+
+  useEffect(() => {
+    async function as() {
+      const result = await AuthStorage.getAccessToken();
+      if (result) {
+        console.log(result);
+      }
+    }
+    as();
+  }, []);
 
   const onSubmit = async (values) => {
     console.log(values.pass, "values");
