@@ -4,7 +4,8 @@ import { TextInput } from "react-native";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { SIGN_IN } from "../graphql/auth";
-import { useMutation } from "@apollo/client";
+import { useApolloClient, useMutation } from "@apollo/client";
+import { useNavigate } from "react-router-native";
 
 import useAuthStorage from "../utils/authHook";
 
@@ -25,6 +26,9 @@ const initialValues = {
 };
 
 const SignIn = () => {
+  /// use uncontrolled components
+  const client = useApolloClient();
+  const nav = useNavigate();
   const AuthStorage = useAuthStorage();
   const [authenticate, result] = useMutation(SIGN_IN, {
     onError: (error) => {
@@ -38,13 +42,14 @@ const SignIn = () => {
   // }
   // get();
 
-  //
-  // useEffect(() => {
-  //   if (result.data) {
-  //     console.log(result.data.authenticate.accessToken);
-  //     AuthStorage.setAccessToken(result.data.authenticate.accessToken);
-  //   }
-  // }, [result]);
+  useEffect(() => {
+    if (result.data) {
+      console.log(result.data.authenticate.accessToken);
+      AuthStorage.setAccessToken(result.data.authenticate.accessToken);
+      nav("/");
+      client.resetStore();
+    }
+  }, [result]);
 
   const onSubmit = async (values) => {
     console.log(values.pass, "values");

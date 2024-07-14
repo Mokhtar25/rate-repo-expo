@@ -17,6 +17,15 @@ export const SIGN_IN = gql`
   }
 `;
 
+export const SIGN_OUT = gql`
+  {
+    me {
+      id
+      username
+    }
+  }
+`;
+
 // const authLink = setContext((_, { headers }) => {
 //   const token = localStorage.getItem("blog-user-token");
 //   return {

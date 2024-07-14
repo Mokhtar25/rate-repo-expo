@@ -16,6 +16,7 @@ class AuthStorageC {
   }
 
   async removeAccessToken() {
+    console.log("remove");
     await AsyncStorage.removeItem(`${this.namespace}:token`);
   }
 }
