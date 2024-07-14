@@ -1,8 +1,11 @@
 import { Text, View, Pressable } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import { TextInput } from "react-native";
 import { useFormik } from "formik";
 import * as yup from "yup";
+
+import { SIGN_IN } from "../graphql/auth";
+import { useMutation } from "@apollo/client";
 
 const validationSchema = yup.object().shape({
   username: yup
@@ -21,8 +24,27 @@ const initialValues = {
 };
 
 const SignIn = () => {
-  const onSubmit = (values) => {
-    console.log(values);
+  const [authenticate, result] = useMutation(SIGN_IN, {
+    onError: (error) => {
+      console.log(JSON.stringify(error, null, 2));
+    },
+  });
+
+  useEffect(() => {
+    if (result.data) {
+      console.log(result.data.authenticate.accessToken);
+    }
+  }, [result]);
+
+  const onSubmit = async (values) => {
+    console.log(values.pass, "values");
+
+    await authenticate({
+      variables: {
+        username: values.username,
+        password: values.pass,
+      },
+    });
   };
 
   const formik = useFormik({
