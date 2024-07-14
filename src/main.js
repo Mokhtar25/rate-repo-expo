@@ -4,7 +4,6 @@ import RepositoryList from "./comp/RepositoryList";
 import AppBar from "./comp/AppBar";
 import { Route, Routes, Navigate } from "react-router-native";
 import SignIn from "./comp/SignIn";
-import RepositoryItem from "./comp/RepositoryItem";
 import RepositoryItemPage from "./comp/RepositoryItemPage";
 
 const styles = StyleSheet.create({
@@ -15,14 +14,7 @@ const styles = StyleSheet.create({
   },
 });
 
-// http://100.127.3.78:5001/api/repositories
 const Main = () => {
-  console.log(
-    Constants.expoConfig.extra.env,
-    Constants.expoConfig.extra,
-    "saddsa",
-  );
-
   return (
     <View style={styles.container} className="bg-neutral-100 ">
       <AppBar />
