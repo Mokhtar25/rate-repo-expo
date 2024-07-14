@@ -34,7 +34,9 @@ function RepositoryItem({
         <Image src={ownerAvatarUrl} style={styles.logo} className="rounded" />
         <View className="flex flex-col px-2">
           <Text className="text-lg font-medium">{fullName} </Text>
-          <Text className="text-xs text-slate-700 ">{description}</Text>
+          <Text className="text-xs text-slate-700 w-[300] pr-1 border-2 border-red-500">
+            {description}
+          </Text>
           <View className="rounded-md bg-sky-700 p-[7] my-2 self-start">
             <Text className="text-white">{language}</Text>
           </View>

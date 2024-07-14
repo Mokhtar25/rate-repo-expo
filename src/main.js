@@ -15,6 +15,12 @@ const styles = StyleSheet.create({
 
 // http://100.127.3.78:5001/api/repositories
 const Main = () => {
+  console.log(
+    Constants.expoConfig.extra.env,
+    Constants.expoConfig.extra,
+    "saddsa",
+  );
+
   return (
     <View style={styles.container} className="bg-neutral-100 ">
       <AppBar />
