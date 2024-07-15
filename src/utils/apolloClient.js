@@ -6,7 +6,9 @@ import { setContext } from "@apollo/client/link/context";
 // http://100.127.3.78:5001/api/repositories
 
 const URI = `http://${Constants.expoGoConfig.debuggerHost.split(":").shift()}:4000`;
-console.log(Constants.expoGoConfig.debuggerHost, "------pp");
+console.log(
+  `http://${Constants.expoGoConfig.debuggerHost.split(":").shift()}:4000`,
+);
 // const URI = Constants.expoConfig.extra.APOLLO_URI;
 
 const httpLink = createHttpLink({
