@@ -55,12 +55,17 @@ function RepositoryItem({
         <Numbers data={ratingAverage} label={"Rating"} />
       </View>
 
-      <View className="bg-blue-500 rounded my-2">
-        <Button title="Visit on Github" color={"#f0f9ff"} onPress={gotoUrl} />
+      <View className="pb-2">
+        <View className="bg-blue-500 rounded my-2">
+          <Button title="Visit on Github" color={"#f0f9ff"} onPress={gotoUrl} />
+        </View>
+        <Link
+          to={`/${id}`}
+          className="justify-center rounded items-center bg-sky-600 "
+        >
+          <Text className="text-xl text-white">More</Text>
+        </Link>
       </View>
-      <Link to={`/${id}`}>
-        <Text title="more"> more </Text>
-      </Link>
     </View>
   );
 }

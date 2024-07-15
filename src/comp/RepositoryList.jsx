@@ -22,20 +22,40 @@ const styles = StyleSheet.create({
 const ItemSeparator = () => <View style={styles.separator} />;
 
 const RepositoryList = () => {
-  const { data, error, loading } = useQuery(GET_REPOSITORIES, {
-    fetchPolicy: "cache-and-network",
+  const { data, error, loading, fetchMore } = useQuery(GET_REPOSITORIES, {
+    variables: {
+      first: 5,
+    },
   });
+
+  const handleFetchMore = () => {
+    const canFetchMore = !loading && data?.repositories.pageInfo.hasNextPage;
+
+    if (!canFetchMore) {
+      return;
+    }
+
+    fetchMore({
+      variables: {
+        after: data.repositories.pageInfo.endCursor,
+      },
+    });
+  };
   // const { repositories } = useRepos();
 
+  const fetchNew = () => {
+    console.log("You have reached the end of the list");
+    handleFetchMore();
+  };
   console.log(data, error, loading);
   if (loading === true || error) return null;
   const repositoryNodes = data
     ? data.repositories.edges.map((edge) => edge.node)
     : [];
 
-  repositoryNodes.sort((a, b) =>
-    a.stargazersCount > b.stargazersCount ? -1 : +1,
-  );
+  // repositoryNodes.sort((a, b) =>
+  //   a.stargazersCount > b.stargazersCount ? -1 : +1,
+  // );
   return (
     <>
       <FlatList
@@ -45,6 +65,8 @@ const RepositoryList = () => {
         ItemSeparatorComponent={ItemSeparator}
         keyExtractor={(item) => item.id}
         renderItem={(data) => <RepositoryItem {...data.item} />}
+        onEndReached={handleFetchMore}
+        onEndReachedThreshold={0.5}
         // other props
       />
       <TEST />
