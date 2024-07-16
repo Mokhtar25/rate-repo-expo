@@ -108,7 +108,7 @@ const SignIn = () => {
         className="bg-blue-500 rounded h-12 w-28 justify-center items-center"
         onPress={formik.handleSubmit}
       >
-        <Text className="text-white">Calculate</Text>
+        <Text className="text-white">Sign In</Text>
       </Pressable>
     </View>
   );
