@@ -1,4 +1,4 @@
-import { View, Text, FlatList } from "react-native";
+import { View, FlatList } from "react-native";
 import React from "react";
 import RepositoryItem from "./RepositoryItem";
 import { useParams } from "react-router-native";
@@ -18,7 +18,6 @@ const RepositoryItemPage = () => {
   const reviews = data
     ? data.repository.reviews.edges.map((edge) => edge.node)
     : [];
-  console.log(reviews, "reviws");
   return (
     <View className=" ">
       <FlatList
@@ -32,5 +31,4 @@ const RepositoryItemPage = () => {
   );
 };
 
-// <RepositoryItem />
 export default RepositoryItemPage;
