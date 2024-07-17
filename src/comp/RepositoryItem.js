@@ -1,4 +1,4 @@
-import { View, StyleSheet, Text, Image, Button } from "react-native";
+import { View, StyleSheet, Text, Image, Button, Pressable } from "react-native";
 import * as Linking from "expo-linking";
 import { Link } from "react-router-native";
 const styles = StyleSheet.create({
@@ -40,7 +40,7 @@ function RepositoryItem({
         <Image src={ownerAvatarUrl} style={styles.logo} className="rounded" />
         <View className="flex flex-col px-2">
           <Text className="text-lg font-medium">{fullName} </Text>
-          <Text className="text-xs text-slate-700 w-[300] pr-1 border-2 border-red-500">
+          <Text className="text-xs text-slate-700 w-[300] pr-1 ">
             {description}
           </Text>
           <View className="rounded-md bg-sky-700 p-[7] my-2 self-start">
@@ -56,9 +56,12 @@ function RepositoryItem({
       </View>
 
       <View className="pb-2">
-        <View className="bg-blue-500 rounded my-2">
-          <Button title="Visit on Github" color={"#f0f9ff"} onPress={gotoUrl} />
-        </View>
+        <Pressable
+          onPress={gotoUrl}
+          className="bg-blue-500 rounded my-2 text-white justify-center items-center p-2"
+        >
+          <Text className="text-white"> Visit on Github</Text>
+        </Pressable>
         <Link
           to={`/${id}`}
           className="justify-center rounded items-center bg-sky-600 "

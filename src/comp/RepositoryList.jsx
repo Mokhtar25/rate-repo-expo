@@ -1,7 +1,4 @@
 import { FlatList, View, StyleSheet, Text } from "react-native";
-import useRepos from "../hooks/UseRepos";
-import { useRef } from "react";
-
 import { useQuery } from "@apollo/client";
 import TEST from "./Press";
 
@@ -12,7 +9,7 @@ import RepositoryItem from "./RepositoryItem";
 const styles = StyleSheet.create({
   separator: {
     display: "flex",
-    gap: "4px",
+    gap: 4,
     flexDirection: "column",
   },
 });
@@ -43,10 +40,6 @@ const RepositoryList = () => {
   };
   // const { repositories } = useRepos();
 
-  const fetchNew = () => {
-    console.log("You have reached the end of the list");
-    handleFetchMore();
-  };
   console.log(data, error, loading);
   if (loading === true || error) return null;
   const repositoryNodes = data

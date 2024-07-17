@@ -14,17 +14,17 @@ export default TEST = () => {
   const snapPoints = useMemo(() => ["25%", "50%", "75%", "100%"], []);
 
   // callbacks
-  const handlePresentModalPress = useCallback(() => {
+  const handlePresentModalPress = () => {
     bottomSheetModalRef.current.present();
-  }, []);
-  const handleSheetChanges = useCallback((index) => {
+  };
+  const handleSheetChanges = (index) => {
     console.log("handleSheetChanges", index);
-  }, []);
+  };
 
   // renders
   return (
     <BottomSheetModalProvider>
-      <View style={styles.container}>
+      <View style={styles.container} className="absolute bottom-1 left-2">
         <Button
           onPress={handlePresentModalPress}
           title="Present Modal"
@@ -32,7 +32,7 @@ export default TEST = () => {
         />
         <BottomSheetModal
           ref={bottomSheetModalRef}
-          index={1}
+          index={3}
           snapPoints={snapPoints}
           onChange={handleSheetChanges}
         >
