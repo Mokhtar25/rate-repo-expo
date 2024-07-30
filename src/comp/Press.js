@@ -21,7 +21,7 @@ export default TEST = () => {
     console.log("handleSheetChanges", index);
   };
 
-  // renders
+  // to do change the more section to a modal and display the mean as a Popup
   return (
     <BottomSheetModalProvider>
       <View style={styles.container} className="absolute bottom-1 left-2">

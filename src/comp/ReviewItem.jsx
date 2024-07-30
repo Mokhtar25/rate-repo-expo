@@ -2,7 +2,6 @@ import { View, Text } from "react-native";
 import React from "react";
 
 const ReviewItem = ({ user, id, text, rating, createdAt }) => {
-  console.log(user, id, text, rating, createdAt);
   const data = new Date(createdAt);
   return (
     <View className="flex flex-row px-2 mb-4">
